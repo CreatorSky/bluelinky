@@ -146,18 +146,16 @@ export default class CanadianVehicle extends Vehicle {
     logger.debug('Begin startClimate request');
     try {
       const body = {
-        hvacInfo: {
           airCtrl: (startConfig.airCtrl ?? false) || (startConfig.defrost ?? false) ? 1 : 0,
           defrost: startConfig.defrost ?? false,
           // postRemoteFatcStart: 1,
           heating1: startConfig.heating1 ? 1 : 0,
-        },
       };
 
       const airTemp = startConfig.airTempvalue;
       // TODO: can we use getTempCode here from util?
       if (airTemp != null) {
-        body.hvacInfo['airTemp'] = {
+        body['airTemp'] = {
           value: celciusToTempCode(REGIONS.CA, airTemp),
           unit: 0,
           hvacTempType: 1,
