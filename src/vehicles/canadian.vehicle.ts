@@ -1,5 +1,6 @@
 import got from 'got';
 import logger from '../logger';
+import util from 'util';
 
 import {
   REGIONS,
