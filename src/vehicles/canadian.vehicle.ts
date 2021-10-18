@@ -146,10 +146,20 @@ export default class CanadianVehicle extends Vehicle {
     logger.debug('Begin startClimate request');
     try {
       const body = {
+        setting: {
           airCtrl: (startConfig.airCtrl ?? false) || (startConfig.defrost ?? false) ? 1 : 0,
           defrost: startConfig.defrost ?? false,
           // postRemoteFatcStart: 1,
           heating1: startConfig.heating1 ? 1 : 0,
+          igniOnDuration: startConfig.igniOnDuration,
+          ims: startConfig.ims ?? 0,
+          seatHeaterVentCMD: {
+            astSeatOptCmd: startConfig.seatHeaterVentCMD.rightFront ?? 0,
+            drvSeatOptCmd: startConfig.seatHeaterVentCMD.driver ?? 0,
+            rlSeatOptCmd: startConfig.seatHeaterVentCMD.leftRear ?? 0,
+            rrSeatOptCmd: startConfig.seatHeaterVentCMD.rightRear ?? 0
+          }
+        }
       };
 
       const airTemp = startConfig.airTempvalue;
@@ -163,7 +173,8 @@ export default class CanadianVehicle extends Vehicle {
       } else if ((startConfig.airCtrl ?? false) || (startConfig.defrost ?? false)) {
         throw 'air temperature should be specified';
       }
-
+      console.log(util.inspect(body, {depth: null}));
+      return 'brah';
       const preAuth = await this.getPreAuth();
       const response = await this.request(this.controller.environment.endpoints.start, body, {
         pAuth: preAuth,

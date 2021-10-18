@@ -414,6 +414,13 @@ export interface VehicleStartOptions {
   airTempvalue?: number;
   defrost?: boolean | string;
   heating1?: boolean | string;
+  ims?: number;
+  seatHeaterVentCMD: {
+    rightFront?: number;
+    driver?: number;
+    rightRear?: number;
+    leftRear?: number;
+  }
 }
 
 export interface VehicleClimateOptions {
