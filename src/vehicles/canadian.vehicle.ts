@@ -155,8 +155,8 @@ export default class CanadianVehicle extends Vehicle {
           igniOnDuration: startConfig.igniOnDuration,
           ims: startConfig.ims ?? 0,
           seatHeaterVentCMD: {
-            astSeatOptCmd: startConfig.seatHeaterVentCMD.rightFront ?? 0,
-            drvSeatOptCmd: startConfig.seatHeaterVentCMD.driver ?? 0,
+            astSeatOptCmd: startConfig.seatHeaterVentCMD.rightFront ?? 2,
+            drvSeatOptCmd: startConfig.seatHeaterVentCMD.driver ?? 2,
             rlSeatOptCmd: startConfig.seatHeaterVentCMD.leftRear ?? 0,
             rrSeatOptCmd: startConfig.seatHeaterVentCMD.rightRear ?? 0
           }
@@ -174,8 +174,7 @@ export default class CanadianVehicle extends Vehicle {
       } else if ((startConfig.airCtrl ?? false) || (startConfig.defrost ?? false)) {
         throw 'air temperature should be specified';
       }
-      console.log(util.inspect(body, {depth: null}));
-      return 'brah';
+      
       const preAuth = await this.getPreAuth();
       const response = await this.request(this.controller.environment.endpoints.start, body, {
         pAuth: preAuth,

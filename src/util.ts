@@ -17,7 +17,7 @@ const REGION_STEP_RANGES = {
     step: 0.5,
   },
   CA: {
-    start: 14.5,
+    start: 14,
     end: 32,
     step: 0.5,
   }
